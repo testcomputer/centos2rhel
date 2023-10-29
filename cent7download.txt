@@ -1,0 +1,59 @@
+Download ISO file.
+
+
+http://isoredirect.centos.org/centos/7/isos/x86_64/
+
+Here's a step-by-step walkthrough for downloading a CentOS ISO file and creating a bootable USB drive:
+Downloading CentOS ISO File
+
+    Visit the Official CentOS Website:
+        Open your web browser and go to the official CentOS website: https://www.centos.org/.
+
+    Select the Desired Version:
+        Depending on your needs, you can choose between CentOS Stream and CentOS Linux. For this walkthrough, we'll focus on CentOS Linux.
+
+    Choose the ISO File:
+        Once you've selected your desired version, you'll be presented with download options. Look for the ISO files. Typically, you'll see two main types:
+            DVD ISO: This is a full installation image that contains everything you need to install the OS on a system.
+            Minimal ISO: A smaller image that installs the bare minimum to get CentOS running. You can install additional packages later.
+
+    Download the ISO File:
+        Click on the download link for the ISO file you want to download. The download will start automatically.
+
+    Verify the Download (Optional but Recommended):
+        For security reasons, it's a good idea to verify your download. The CentOS website provides checksum values (like SHA256) that you can compare against your downloaded file.
+        Use a tool like sha256sum on Linux to verify the checksum.
+
+        bash
+
+        sha256sum /path/to/your/downloaded.iso
+
+        Compare the output with the checksum provided on the website. If they match, your download is genuine.
+
+Creating a Bootable CentOS USB Drive
+
+    Insert a USB Drive:
+        Plug in a USB drive that has at least the size of the ISO file you downloaded (8GB or more is recommended).
+
+    Determine the USB Drive's Name:
+        On a Linux system, you can use the lsblk command to list all storage devices.
+        Identify your USB drive by its size or name. It will typically be named something like /dev/sdb.
+
+    Flash the ISO to the USB Drive:
+        Use a tool like dd to flash the ISO to the USB drive. Be very careful with this command; using the wrong device name can erase data.
+
+        bash
+
+        sudo dd if=/path/to/your/downloaded.iso of=/dev/sdX bs=4M status=progress && sync
+
+        Replace /path/to/your/downloaded.iso with the actual path to your ISO file and /dev/sdX with your USB drive's name (e.g., /dev/sdb).
+
+    Safely Remove the USB Drive:
+        Once the dd command completes, you can safely remove the USB drive from your computer.
+
+    Boot from the USB Drive:
+        Insert the USB drive into the computer you want to install CentOS on.
+        Reboot the computer and select the USB drive from the boot menu. The exact method varies depending on the manufacturer, but often you'll press a key like F12, F2, or ESC during startup.
+        Follow the on-screen instructions to install CentOS.
+
+That's it! You've successfully downloaded the CentOS ISO file and created a bootable USB drive. Now you can use this USB drive to install CentOS on any compatible machine.
